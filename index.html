@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pemesanan Makanan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Form Pemesanan Makanan</h1>
+        <form id="orderForm">
+            <label for="name">Nama Anda:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="food">Pilih Menu:</label>
+            <select id="food" name="food">
+                <option value="Nasi Goreng">Nasi Goreng</option>
+                <option value="Mie Ayam">Mie Ayam</option>
+                <option value="Sate Ayam">Sate Ayam</option>
+            </select>
+
+            <button type="submit">Pesan Sekarang</button>
+        </form>
+
+        <p id="responseMessage"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
