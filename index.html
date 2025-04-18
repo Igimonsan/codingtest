@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kentang Goreng Crispy</title>
+  <style>
+    /* Style umum */
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff6e5;
+      padding: 30px 15px;
+      text-align: center;
+      margin: 0;
+      min-height: 100vh;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      padding: 25px;
+      max-width: 800px;
+      margin: auto;
+      animation: fadeInUp 0.8s ease-out forwards;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      color: #ff9900;
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #444;
+      margin-bottom: 15px;
+    }
+
+    .product-img {
+      width: 100%;
+      max-width: 360px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .btn {
+      padding: 8px 14px;
+      margin: 3px;
+      font-size: 14px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .order-btn {
+      background-color: #ff9900;
+      color: white;
+    }
+
+    .order-btn:hover {
+      background-color: #e08800;
+    }
+
+    .toggle-btn {
+      background-color: #ddd;
+    }
+
+    .toggle-btn:hover {
+      background-color: #bbb;
+    }
+
+    .bmc-content {
+      text-align: left;
+      margin-top: 20px;
+      display: none;
+      animation: fadeIn 0.5s ease-in;
+      font-size: 14px;
+    }
+
+    .bmc-content h3 {
+      margin-top: 16px;
+      color: #333;
+      font-size: 16px;
+    }
+
+    .bmc-content ul {
+      margin-left: 18px;
+      padding-left: 10px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    #menu-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      justify-content: center;
+      margin-top: 20px;
+      opacity: 0; /* Start hidden */
+      animation: fadeInMenu 0.5s ease-in forwards; /* Add fade-in animation */
+    }
+
+    @keyframes fadeInMenu {
+      to {
+        opacity: 1;
+      }
+    }
+
+    #judul-menu {
+      font-size: 20px;
+      margin-bottom: 10px;
+      grid-column: 1 / -1;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Kentang Goreng Crispy</h1>
+    <p>Nikmati sensasi gurih dan renyah kentang goreng buatan kami! Cocok untuk semua suasana dan dijamin bikin nagih!</p>
+    <img class="product-img" src="https://github.com/Igimonsan/Image/blob/main/WhatsApp%20Image%202025-04-15%20at%2021.31.11_464c0cd9.jpg?raw=true" alt="Kentang Goreng">
+    <br><br>
+    <button class="btn order-btn" onclick="toggleMenu()">Pilih Menu</button>
+    <button class="btn toggle-btn" onclick="toggleDeskripsi()">Deskripsi Produk</button>
+
+    <div class="bmc-content" id="deskripsi" style="display: none;">
+      <h3>Deskripsi Produk</h3>
+      <p>Kentang goreng crispy kami dibuat dari kentang pilihan dengan bumbu khas yang meresap sempurna. Digoreng dengan teknik khusus sehingga menghasilkan tekstur renyah di luar dan lembut di dalam.</p>
+      <h3>Varian Rasa:</h3>
+      <ul>
+        <li>Keju</li>
+        <li>Balado Pedas</li>
+        <li>BBQ</li>
+        <li>Rumput Laut</li>
+      </ul>
+    </div>
+
+    <div id="menu-container" style="display: none;">
+      <h2 id="judul-menu">Pilih Menu Kentang Goreng</h2>
+      <button class="btn order-btn" onclick="order('Keju - Kecil')">Keju - Kecil (Rp12000)</button>
+      <button class="btn order-btn" onclick="order('Keju - Besar')">Keju - Besar (Rp17000)</button>
+      <button class="btn order-btn" onclick="order('Balado Pedas - Kecil')">Balado Pedas - Kecil (Rp13000)</button>
+      <button class="btn order-btn" onclick="order('Balado Pedas - Besar')">Balado Pedas - Besar (Rp18000)</button>
+      <button class="btn order-btn" onclick="order('BBQ - Kecil')">BBQ - Kecil (Rp13000)</button>
+      <button class="btn order-btn" onclick="order('BBQ - Besar')">BBQ - Besar (Rp18000)</button>
+      <button class="btn order-btn" onclick="order('Rumput Laut - Kecil')">Rumput Laut - Kecil (Rp14000)</button>
+      <button class="btn order-btn" onclick="order('Rumput Laut - Besar')">Rumput Laut - Besar (Rp19000)</button>
+    </div>
+  </div>
+
+  <script>
+    function toggleDeskripsi() {
+      var deskripsi = document.getElementById("deskripsi");
+      var menu = document.getElementById("menu-container");
+      deskripsi.style.display = deskripsi.style.display === "none" ? "block" : "none";
+      menu.style.display = "none";
+    }
+
+    function toggleMenu() {
+      var menu = document.getElementById("menu-container");
+      var deskripsi = document.getElementById("deskripsi");
+      menu.style.display = menu.style.display === "none" ? "grid" : "none";
+      deskripsi.style.display = "none";
+    }
+
+    function order(menuItem) {
+      var whatsappLink = "https://wa.me/6289519705542?text=" + encodeURIComponent("Saya ingin memesan kentang goreng crispy: " + menuItem);
+      // Redirect to WhatsApp directly
+      window.location.href = whatsappLink;
+    }
+  </script>
+</body>
+</html>
